@@ -63,7 +63,7 @@ class BannerCourse(Course):
     class Meta:
         verbose_name = u'轮播课程'
         verbose_name_plural = verbose_name
-        prixy = True
+        proxy = True
 
 
 class Lesson(models.Model):
