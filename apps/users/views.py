@@ -23,8 +23,10 @@ class LoginView(View):
             if users is not None:
                 login(request, users)
                 return render(request, 'index.html')
+            else:
+                return render(request, 'login.html', {'msg': u'用户名或密码错误'})
         else:
-            return render(request, 'login.html', {'msg': u'用户名或密码错误'})
+            return render(request, 'login.html', {'login_form': login_form})
 
 
 
