@@ -4,11 +4,28 @@ from django.contrib.auth import authenticate,login
 from django.contrib.auth.backends import ModelBackend
 from django.db.models import Q
 from django.views.generic.base import View
+from django.contrib.auth.hashers import make_password
 
 from .models import UserProfile
-from .forms import LoginForm
+from .forms import LoginForm, RegisterForm
 # Create your views here.
 
+class RegisterView(View):
+    def get(self,request):
+        register_form = RegisterForm(request.POST)
+        return render(request, 'register.html', {'registerform': register_form})
+
+    def post(self,request):
+        register_form = RegisterForm(request.POST)
+        if register_form.is_valid():
+            user_email = request.POST.get('email')
+            user_name = request.POST.get('email')
+            user_password = make_password(request.POST.get('password'))
+            user = UserProfile()
+            user.username= user_name
+            user.email = user_email
+            user.password = user_password
+            user.save()
 
 class LoginView(View):
     def get(self, request):
