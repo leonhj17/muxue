@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block city %}
+<div class="cont">
+<a href="?ct="><span class="active2">全部</span></a>
+        {% for city in all_city %}
+            <a href="?city=1&ct="><span class="">{{ city.name }}</span></a>
+        {% endfor %}
+</div>
+{% endblock city %}
+
+{% block jigou %}
+    {% for org in all_org %}
+        <dl class="des difdes">
+            <dt>
+                <a href="org-detail-homepage.html">
+                    <img width="200" height="120" class="scrollLoading" data-url="{{ MEDIA_URL }}{{ org.image }}"/>
+                </a>
+            </dt>
+            <dd>
+                <div class="clearfix">
+                     <a href="org-detail-homepage.html">
+                         <h1>{{ org.name }}</h1>
+                         <div class="pic fl">
+
+                                 <img src="{% static 'images/authentication.png' %}"/>
+
+                                 <img src="{% static 'images/gold.png' %}"/>
+
+                         </div>
+                     </a>
+                </div>
+                <ul class="cont">
+                    <li class="first"><p class="pic9">课程数：<span>1</span></p><p class="c7">学习人数：<span>1000</span></p></li>
+                    <li class="c8" style="padding-left:18px;">{{ org.address }}</li>
+                    <li class="pic10" style="padding-left:18px;">经典课程：
+
+                            <a href="/diary/19/">c语言基础入门</a>
+
+                            <a href="/diary/16/">数据库基础</a>
+
+                    </li>
+                </ul>
+            </dd>
+            <div class="buy start_groupbuy jsShowPerfect2" data-id="22"><br/>联系<br/>服务</div>
+        </dl>
+    {% endfor %}
+{% endblock jigou %}
