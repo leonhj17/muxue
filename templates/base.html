@@ -94,6 +94,7 @@
 		<div class="listoptions">
 			<ul>
 				<li>
+                    {% block jigou_ct %}
 					<h2>机构类别</h2>
 					<div class="cont">
                         <a href="?city="><span class="active2">全部</span></a>
@@ -105,6 +106,7 @@
                             <a href="?ct=gr&city="><span class="">个人</span></a>
 
 					</div>
+                    {% endblock %}
 				</li>
 				<li>
 					<h2>所在地区</h2>
@@ -129,7 +131,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="all">共<span class="key">15</span>家</div>
+		<div class="all">共<span class="key">{% block jigou_num %}15{% endblock %}</span>家</div>
 		<div class="butler_list company list">
 		<div class="layout">
 			<div class="head">
@@ -312,37 +314,21 @@
 {#                </dl>#}
             
 		</div>
+
+        {% block pagination %}
 		 <div class="pageturn">
             <ul class="pagelist">
-                
-
-                
-                    
-                        
                             <li class="active"><a href="?page=1">1</a></li>
-                        
-                    
-                
-                    
-                        
                             <li><a href="?page=2" class="page">2</a></li>
-                        
-                    
-                
-                    
-                        
                             <li><a href="?page=3" class="page">3</a></li>
-                        
-                    
-                
-                
-                    <li class="long"><a href="?page=2">下一页</a></li>
-                
-
-            </ul>
+                             <li class="long"><a href="?page=2">下一页</a></li>
+             </ul>
         </div>
+        {% endblock %}
+
 		</div>
 	</div>
+
 	<div class="right companyright">
 			<div class="head">我要学习</div>
 			<form class="rightform" id="jsStayForm">
