@@ -59,15 +59,15 @@
 					<div class="wp">
 						<ul>
 							<li ><a href="{% url 'index' %}">首页</a></li>
-							<li >
+							<li {% if pg == 'course' %}class="active" {% endif %}>
 								<a href="{% url 'course:list' %}">
 									公开课<img class="hot" src="{% static 'images/nav_hot.png' %}">
 								</a>
 							</li>
-							<li >
+							<li>
 								<a href="teachers-list.html">授课教师</a>
 							</li>
-							<li class="active" ><a href="{% url 'org:list' %}">授课机构</a></li>
+							<li {% if pg == 'org' %}class="active" {% endif %}><a href="{% url 'org:list' %}">授课机构</a></li>
 						</ul>
 					</div>
 				</div>

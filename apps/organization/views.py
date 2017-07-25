@@ -50,7 +50,8 @@ class OrgView(View):
             'city_id': city_id,
             'all_org': all_org,
             'org_num': org_num,
-            'category': category
+            'category': category,
+            'page': 'org'
         })
 
 
