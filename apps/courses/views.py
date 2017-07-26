@@ -42,3 +42,12 @@ class CourseListView(View):
             'pg': 'course',
             'recommend': recommend_course,
         })
+
+
+class CourseDetailView(View):
+    def get(self, request, course_id):
+        course = Course.objects.filter(id=course_id)
+
+        return render(request, 'course-detail.html', {
+            'course_detail': course
+        })

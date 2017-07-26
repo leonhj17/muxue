@@ -44,7 +44,7 @@ class Course(models.Model):
         verbose_name_plural = verbose_name
 
     def get_zj_nums(self):
-        pass
+        return self.lesson_set.all().count()
 
     def go_to(self):
         pass
