@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<body>
+<p>请输入两个数字</p>
+<form action="{% url 'zq:add' %}" method="get">
+    a: <input type="text" id="a" name="a"> <br>
+    b: <input type="text" id="b" name="b"> <br>
+    <p>result: <span id='result'></span></p>
+    <button type="button" id='sum'>提交</button>
+</form>
+
+<div id="dict">ajax 加载字典</div>
+<p id="dict_result"></p>
+
+<button type="button" id="list">ajax 加载列表</button>
+<p id="list_result"></p>
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script>
+    var data = []
+
+    $(document).ready(function(){
+      $("#sum").click(function(){
+        var a = $("#a").val();
+        var b = $("#b").val();
+
+        $.get("{% url 'zq:add' %}",{'a':a,'b':b}, function(ret){
+            $('#result').html(ret)
+        })
+      });
+
+      $("#list").click(
+          function () {
+              $.getJSON("{% url 'zq:list' %}", function(ret){
+                  for (var i=0; i<ret.length; i++){
+                      $("#list_result").append(''+ret[i])
+                  };
+              })
+          }
+      )
+
+{#        $("#list").click(#}
+{#          function () {#}
+{#              $.getJSON("{% url 'zq:list' %}", function(ret){#}
+{#                  data = ret#}
+{#                  return data;#}
+{#              })#}
+{#          }#}
+{#        )#}
+    });
+
+    function getnums() {
+        $.getJSON("{% url 'zq:list' %}", function(ret){
+                  for (var i=0; i<ret.length; i++){
+                      $("#list_result").append(''+ret[i])
+                  };
+              })
+    };
+    $(document).ready(
+        function () {
+            setInterval(getnums, 1000);
+        }
+    );
+</script>
+</body>
+</html>
+
